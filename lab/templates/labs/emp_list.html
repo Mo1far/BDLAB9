@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <table border="1|0">
+    <tr>
+            <td>empno</td>>
+            <td>ename</td>>
+            <td>job</td>>
+            <td>mgr</td>>
+            <td>sal</td>>
+            <td>comm</td>>
+            <td>deptno</td>>
+        </tr>
+    {% for row in emp_list %}
+        <tr>
+            <td>{{ row.empno }}</td>>
+            <td>{{ row.ename }}</td>>
+            <td>{{ row.job }}</td>>
+            <td>{{ row.mgr }}</td>>
+            <td>{{ row.sal }}</td>>
+            <td>{{ row.comm }}</td>>
+            <td>{{ row.deptno }}</td>>
+        </tr>
+    {% endfor %}
+    </table>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
